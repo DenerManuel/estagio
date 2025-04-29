@@ -1,18 +1,17 @@
 export class ButtonText extends PIXI.Text {
-  constructor(text, textOptions = {}) {
-    super(text , {
-      fontFamily: textOptions.fontFamily || 'Lato',
-      fontSize: textOptions.fontSize || 22,
-      fill: textOptions.textColor || 0xFFFFFF,
+  constructor(buttonText, textOptions) {
+    super(buttonText, {
+      fontFamily: textOptions.fontFamily,
+      fontSize: textOptions.fontSize,
+      fill: textOptions.textColor,
       align: 'center'
-    })
-
-    this.anchor.set(0.5);
+    });
+    this.centralize(textOptions.width, textOptions.height);
   }
-  centralizeText(buttonWidth, buttonHeight) {
+  centralize(buttonWidth, buttonHeight) {
+    this.anchor.set(0.5);
     this.position.set(buttonWidth / 2, buttonHeight / 2);
   }
-
   setText(newText) {
     this.text = newText;
   }

@@ -18,7 +18,7 @@ export class GameManager {
     await this._loadCategories();
     await this._prepareScreens();
     await this._prepareNavigation();
-    this._loadInitialScreen();
+    this._displayInitialScreen();
 
   }
 
@@ -74,6 +74,7 @@ export class GameManager {
   // Preparação das telas e navegação.
   async _prepareScreens() {
     this.screenManager = new ScreenManager(this.app);
+    this.app.screenManager = this.screenManager;
     this.screenManager.preloadScreens(this.gameCategories);
   }
   async _prepareNavigation() {
@@ -81,8 +82,8 @@ export class GameManager {
   }
 
   // Carregamento da tela inicial.
-  _loadInitialScreen() {
-    this.screenManager.loadScreen('categoriesScreen');
+  _displayInitialScreen() {
+    this.screenManager.displayScreen('homeScreen');
   }
 
   // Lidar com falhas críticas.

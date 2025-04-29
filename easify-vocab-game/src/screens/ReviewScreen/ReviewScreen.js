@@ -23,7 +23,7 @@ export class ReviewScreen extends PIXI.Container {
   async _initialize() {
     await this._loadCardImages();
     this._createLayout();
-    this._updateItems();
+    this._updateDisplayedContent();
   }
 
   async _loadCardImages() {
@@ -32,12 +32,11 @@ export class ReviewScreen extends PIXI.Container {
 
   _createLayout() {
     this._addImageContainer();
-    // this._addImageBackground();
     this._configureImage();
     this._addNavigationButtons();
     this._addWordContainer();
     this._addFooterContainer();
-    this._configureButtonEvents();
+    this._configureNavigationButtonEvents();
   }
 
   _addImageContainer() {
@@ -75,22 +74,22 @@ export class ReviewScreen extends PIXI.Container {
     this.addChild(this.footerContainer);
   }
 
-  _configureButtonEvents() {
-    this.previousButton.on('click', () => this._navigate(-1));
-    this.nextButton.on('click', () => this._navigate(1));
-    this.toggleButton.on('click', () => this._toggleWord());
+  _configureNavigationButtonEvents() {
+    this.previousButton.on('click', () => this._changeCurrentIndex(-1));
+    this.nextButton.on('click', () => this._changeCurrentIndex(1));
+    this.toggleButton.on('click', () => this._toggleWordVisibility());
   }
-  _navigate(direction) {
-    this.currentIndex += direction;
+  _changeCurrentIndex(navigationStep) {
+    this.currentIndex += navigationStep;
     const REACH_END = this.currentIndex >= this.category.items.length;
     const REACH_START = this.currentIndex < 0;
 
     if (REACH_END) this.currentIndex = 0;
     if (REACH_START) this.currentIndex = this.category.items.length - 1;
-    this._updateItems();
+    this._updateDisplayedContent();
   }
 
-  _toggleWord() {
+  _toggleWordVisibility() {
     const TOGGLE_HIDDEN_TEXT = 'Ⱦ';
     const TOGGLE_VISIBLE_TEXT = 'T';
 
@@ -105,7 +104,7 @@ export class ReviewScreen extends PIXI.Container {
     }
   }
 
-  _updateItems() {
+  _updateDisplayedContent() {
     const itemName = this.category.items[this.currentIndex].name;
 
     updateImage(this.imageContainer, this.cardImages, this.currentIndex)

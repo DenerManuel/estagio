@@ -8,19 +8,22 @@ export class NavigationManager {
     this._configureBackButton();
   }
 
-  navigateTo(screenName, sourceScreen, gameCategories = {}) {
-    this.screenManager.loadScreen(screenName, sourceScreen, gameCategories);
+  navigateTo(screenName, sourceScreen, options = {}) {
+    this.screenManager.displayScreen(screenName, sourceScreen);
+    if (screenName === 'categoriesScreen') {
+      this.screenManager.screens.categoriesScreen.app.context = options.context;
+    }
   }
 
   _configureInitialScreenButtons() {
     const buttons = [
-      { button: this.screenManager.screens.homeScreen.chooseButton, targetScreen: 'categoriesScreen' },
-      { button: this.screenManager.screens.homeScreen.reviewButton, targetScreen: 'reviewScreen' }
+      { button: this.screenManager.screens.homeScreen.chooseButton, targetScreen: 'categoriesScreen', context: 'game' },
+      { button: this.screenManager.screens.homeScreen.reviewButton, targetScreen: 'categoriesScreen', context: 'review' }
     ];
 
-    buttons.forEach(({ button, targetScreen }) => {
+    buttons.forEach(({ button, targetScreen, context }) => {
       button.on('click', () => {
-        this.navigateTo(targetScreen, 'homeScreen');
+        this.navigateTo(targetScreen, 'homeScreen', { context });
       });
     });
   }
@@ -35,7 +38,7 @@ export class NavigationManager {
       this.navigateTo('homeScreen', 'categoriesScreen');
     });
     reviewBackButton.on('click', () => {
-      this.navigateTo('homeScreen', 'reviewScreen');
+      this.navigateTo('categoriesScreen', 'reviewScreen', { context: 'review' },);
     });
   }
 }

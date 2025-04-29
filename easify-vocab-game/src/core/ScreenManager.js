@@ -17,9 +17,21 @@ export class ScreenManager {
     }
   }
 
-  loadScreen(screenName, sourceScreen) {
+  displayScreen(screenName, sourceScreen, category = null) {
     this._removeCurrentScreen(sourceScreen);
-    this._addNewScreen(screenName);
+
+    if (screenName === 'reviewScreen' && category) {
+      // Recria a ReviewScreen com a categoria selecionada
+      this.screens.reviewScreen = new ReviewScreen(this.app, category);
+      const backButton = this.screens.reviewScreen.addBackButton();
+  
+      // Configura o evento de clique do botão de voltar
+      backButton.on('click', () => {
+        this.app.screenManager.displayScreen('categoriesScreen', 'reviewScreen', { context: 'review' });
+      });
+    }
+
+    this._displayNewScreen(screenName);
   }
 
   _removeCurrentScreen(sourceScreen) {
@@ -28,7 +40,7 @@ export class ScreenManager {
       this.app.stage.removeChild(this.currentScreen);
     }
   }
-  _addNewScreen(screenName) {
+  _displayNewScreen(screenName) {
     this.app.stage.addChild(this.screens[screenName]);
   }
 }

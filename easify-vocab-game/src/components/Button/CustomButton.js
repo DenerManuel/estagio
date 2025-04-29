@@ -1,55 +1,43 @@
-import { ButtonBackground } from './ButtonBackground.js'
-import { ButtonText } from './ButtonText.js'
-import { ButtonInteraction } from './ButtonInteraction.js'
+import { ButtonBackground } from "./ButtonBackground.js";
+import { ButtonText } from "./ButtonText.js";
+import { ButtonInteraction } from "./ButtonInteraction.js";
+import { configureButtonOptions } from "./ButtonOptions.js";
 
 export class CustomButton extends PIXI.Container {
   constructor(buttonText, buttonOptions = {}) {
     super();
+    this.text = buttonText;
 
-    this._configureButtonOptions(buttonOptions);
-    this._createButtonComponents(buttonText);
-    this._configureButtonInteractions();
+    this._configureOptions(buttonOptions);
+    this._addComponents();
+    this._addInteraction();
   }
-
+  
   editText(newText) {
-    this.buttonText.setText(newText);
-    this.buttonText.centralizeText(this.buttonConfig.width, this.buttonConfig.height);
+    this.text.setText(newText);
+    this.text.centralize(this.options.width, this.options.height);
   }
 
-  _configureButtonOptions(buttonOptions) {
-    this.buttonConfig = {
-      width: 200,
-      height: 50,
-      backgroundColor: 0x4CAF50,
-      hoverColor: 0x45a049,
-      borderRadius: 32,
-      ...buttonOptions // Sobreescreve com opções personalizadas
-    };
-
-    this.textConfig = {
-      fontSize: 25,
-      textColor: 0xFFFFFF,
-      ...buttonOptions
-    };
-  } // Configura as opções padrão e personalizadas
-
-  _createButtonComponents(buttonText) {
-    this._createBackground();
-    this._createText(buttonText);
+  _configureOptions(buttonOptions) {
+    this.options = configureButtonOptions(buttonOptions)
   }
 
-  _createBackground() {
-    this.background = new ButtonBackground(this.buttonConfig);
+  _addComponents() {
+    this._addBackground();
+    this._addText();
+  }
+
+  _addBackground() {
+    this.background = new ButtonBackground(this.options);
     this.addChild(this.background);
   }
 
-  _createText(buttonText) {
-    this.buttonText = new ButtonText(buttonText, this.textConfig);
-    this.buttonText.centralizeText(this.buttonConfig.width, this.buttonConfig.height);
-    this.addChild(this.buttonText);
+  _addText() {
+    this.text = new ButtonText(this.text, this.options);
+    this.addChild(this.text);
   }
 
-  _configureButtonInteractions() {
-    this.buttonInteraction = new ButtonInteraction(this, this.buttonConfig);
+  _addInteraction() {
+    this.interaction = new ButtonInteraction(this, this.options);
   }
 }

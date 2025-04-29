@@ -20,7 +20,7 @@ export class CustomCard extends PIXI.Container {
   _addComponents() {
     this._addBackground();
     this._addImage();
-    this._createTitle()
+    this._addTitle()
   }
 
   _addBackground() {
@@ -34,7 +34,7 @@ export class CustomCard extends PIXI.Container {
   }
 
   _addImage() {
-    const IMAGE_URL = `assets/categories/${this.category.title}/${this.category.items[1].image}`;
+    const IMAGE_URL = `assets/categories/${this.category.title}/${this.category.items[0].image}`;
     this.image = new CardImage(
       IMAGE_URL,
       this.settings.width,
@@ -54,16 +54,8 @@ export class CustomCard extends PIXI.Container {
     image.anchor.set(0.5); // Centraliza o ponto de ancoragem
     image.position.set(this.settings.width / 2, this.settings.height / 2); // Centraliza no container
   }
-  // _adjustImage(image) {
-  //   image.width = this.settings.width - 20; // Ajuste a largura da imagem
-  //   image.height = this.settings.height - 20; // Ajustar a altura da imagem
-  //   image.position.set(0, 0); // Centralize a imagem no cartão
-  //   image.anchor.set(0.5); // Definir âncora para o centro
-  //   image.x = this.settings.width / 2; // Centralize a imagem horizontalmente
-  //   image.y = this.settings.height / 2; // Centralize a imagem verticalmente
-  // }
 
-  _createTitle() {
+  _addTitle() {
     this.title = new CardTitle(
       this.category.title,
       this.settings.width,
@@ -72,7 +64,7 @@ export class CustomCard extends PIXI.Container {
     this.addChild(this.title);
   }
 
-  _createTooltip() {
+  _addTooltip() {
     this.tooltip = new CardTooltip(
       this.category.items,
       this.settings.width

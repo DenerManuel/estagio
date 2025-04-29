@@ -1,25 +1,31 @@
 import { CustomCard } from '../../../components/Card/CustomCard.js';
 
-export function loadCards(gameCategories) {
+export function loadCards(cardGroup) {
   const cards = [];
+  let j = 0
 
-  for (let i = 0; i < 7; i++) {
-    const card = _createCard(gameCategories[0]);
+  for (let i = 0; i < 30; i++) {
+    const card = _createCard(cardGroup[j]);
     cards.push(card);
+    j++
+    if (j === 3) {
+      j = 0
+    }
   }
-  // gameCategories.forEach((category) => {
+  // cardGroup.forEach((category) => {
   //   const card = _createCard(category);
   //   cards.push(card);
   // });
   return cards;
 }
+
 const _createCard = (category) => {
   return new CustomCard(category, {
     width: 120,
     height: 120,
     backgroundColor: 0xF5F5F5,
   });
-}
+};
 
 export function positionCard(card, cardsContainer) {
   const cardWidth = 120;
