@@ -5,12 +5,20 @@ export class ButtonBackground extends PIXI.Graphics {
     this.options.baseColor = this.options.backgroundColor;
     this._createBackground();
   }
+  changeColor(newColor) {
+    this.options.baseColor = newColor;
+    this._createBackground();
+  }
 
   _createBackground() {
     this.clear();
-    this._configureBorder();
     this._fillBackground();
+    this._configureBorder();
     this._drawRectangle();
+  }
+  
+  _fillBackground() {
+    this.beginFill(this.options.baseColor)
   }
 
   _configureBorder() {
@@ -19,9 +27,7 @@ export class ButtonBackground extends PIXI.Graphics {
       this.options.borderColor
     );
   }
-  _fillBackground() {
-    this.beginFill(this.options.baseColor)
-  }
+  
   _drawRectangle() {
     this.drawRoundedRect(
       0,

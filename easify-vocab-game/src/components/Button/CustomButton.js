@@ -7,8 +7,8 @@ export class CustomButton extends PIXI.Container {
   constructor(buttonText, buttonOptions = {}) {
     super();
     this.text = buttonText;
+    this.options = configureButtonOptions(buttonOptions)
 
-    this._configureOptions(buttonOptions);
     this._addComponents();
     this._addInteraction();
   }
@@ -16,10 +16,6 @@ export class CustomButton extends PIXI.Container {
   editText(newText) {
     this.text.setText(newText);
     this.text.centralize(this.options.width, this.options.height);
-  }
-
-  _configureOptions(buttonOptions) {
-    this.options = configureButtonOptions(buttonOptions)
   }
 
   _addComponents() {

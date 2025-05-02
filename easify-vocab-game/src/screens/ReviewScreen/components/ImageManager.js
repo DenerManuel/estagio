@@ -1,8 +1,8 @@
-export function configureImage(images, imageContainer) {
+export function configureImage(images, imageContainer, borderRadius = 38) {
   images.forEach(image => {
     _setImageSize(image, imageContainer);
     _centerImage(image, imageContainer);
-    _applyRoundedMask(image, imageContainer)
+    _applyRoundedMask(image, imageContainer, borderRadius)
   });
   return images
 }
@@ -20,10 +20,9 @@ const _centerImage = (image, imageContainer) => {
   image.anchor.set(0.5);
   image.position.set(containerWidth / 2, containerHeight / 2);
 }
-const _applyRoundedMask = (image, imageContainer) => {
+const _applyRoundedMask = (image, imageContainer, borderRadius) => {
   const containerWidth = imageContainer.settings.width - 4;
   const containerHeight = imageContainer.settings.height - 4;
-  const borderRadius = 38;
 
   const mask = new PIXI.Graphics();
   mask.beginFill(0xFFFFFF);

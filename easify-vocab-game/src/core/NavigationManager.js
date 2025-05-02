@@ -8,8 +8,8 @@ export class NavigationManager {
     this._configureBackButton();
   }
 
-  navigateTo(screenName, sourceScreen, options = {}) {
-    this.screenManager.displayScreen(screenName, sourceScreen);
+  navigateTo(screenName, options = {}) {
+    this.screenManager.displayScreen(screenName);
     if (screenName === 'categoriesScreen') {
       this.screenManager.screens.categoriesScreen.app.context = options.context;
     }
@@ -23,7 +23,7 @@ export class NavigationManager {
 
     buttons.forEach(({ button, targetScreen, context }) => {
       button.on('click', () => {
-        this.navigateTo(targetScreen, 'homeScreen', { context });
+        this.navigateTo(targetScreen, { context });
       });
     });
   }
@@ -35,10 +35,10 @@ export class NavigationManager {
     const reviewBackButton = reviewScreen.addBackButton();
 
     categoriesBackButton.on('click', () => {
-      this.navigateTo('homeScreen', 'categoriesScreen');
+      this.navigateTo('homeScreen');
     });
     reviewBackButton.on('click', () => {
-      this.navigateTo('categoriesScreen', 'reviewScreen', { context: 'review' },);
+      this.navigateTo('categoriesScreen', { context: 'review' },);
     });
   }
 }

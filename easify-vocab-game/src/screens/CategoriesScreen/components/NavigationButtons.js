@@ -1,6 +1,6 @@
 import { CustomButton } from "../../../components/Button/CustomButton.js";
 
-export const createNavigationButtons = {
+export const NavigationButtons = {
   createPreviousButton: function () {
     const previousButton = new CustomButton('◀', {
       width: 80,

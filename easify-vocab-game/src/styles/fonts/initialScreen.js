@@ -1,5 +1,5 @@
 export const InitialScreenFonts = {
   titleFontSize: 50,
-  startButtonFontSize: 24,
-  secondaryButtonFontSizeg: 22,
+  startButtonFontSize: 30,
+  secondaryButtonFontSize: 20,
 };

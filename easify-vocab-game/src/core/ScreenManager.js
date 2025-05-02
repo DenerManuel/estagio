@@ -1,4 +1,4 @@
-import { HomeScreen } from '../screens/HomeScreen.js';
+import { HomeScreen } from '../screens/HomeScreen/HomeScreen.js';
 import { CategoriesScreen } from '../screens/CategoriesScreen/CategoriesScreen.js';
 import { ReviewScreen } from '../screens/ReviewScreen/ReviewScreen.js';
 
@@ -17,30 +17,31 @@ export class ScreenManager {
     }
   }
 
-  displayScreen(screenName, sourceScreen, category = null) {
-    this._removeCurrentScreen(sourceScreen);
+  displayScreen(screenName, category = null) {
+    this._removeCurrentScreen();
 
     if (screenName === 'reviewScreen' && category) {
       // Recria a ReviewScreen com a categoria selecionada
       this.screens.reviewScreen = new ReviewScreen(this.app, category);
       const backButton = this.screens.reviewScreen.addBackButton();
-  
+
       // Configura o evento de clique do botão de voltar
       backButton.on('click', () => {
-        this.app.screenManager.displayScreen('categoriesScreen', 'reviewScreen', { context: 'review' });
+        this.app.screenManager.displayScreen('categoriesScreen', { context: 'review' });
       });
     }
 
     this._displayNewScreen(screenName);
   }
 
-  _removeCurrentScreen(sourceScreen) {
-    if (sourceScreen) {
-      this.currentScreen = this.screens[sourceScreen];
+  _removeCurrentScreen() {
+    if (this.currentScreen) {
       this.app.stage.removeChild(this.currentScreen);
+      this.currentScreen = null; // Limpa a referência à tela atual
     }
   }
   _displayNewScreen(screenName) {
-    this.app.stage.addChild(this.screens[screenName]);
+    this.currentScreen = this.screens[screenName];
+    this.app.stage.addChild(this.currentScreen);
   }
 }
