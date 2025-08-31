@@ -1,1 +1,0 @@
-export const DefaultFontFamily = 'Arial, sans-serif';

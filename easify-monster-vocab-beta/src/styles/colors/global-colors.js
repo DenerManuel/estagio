@@ -1,9 +1,0 @@
-export const GLOBAL_COLORS = {
-  PRIMARY: 0x241D7A, // Dark blue
-  SECONDARY: 0xFB7302, // Orange
-  BUTTONS_HOVER: 0xFCD2AE, // Light orange
-  WHITE: 0xFFFFFF,
-  BLACK: 0x000000,
-  SUCCESS_COLOR: 0x4CAF50, // Green
-  ERROR_COLOR: 0xFF0000, // Red
-};
