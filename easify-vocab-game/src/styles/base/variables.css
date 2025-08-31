@@ -1,0 +1,8 @@
+:root {
+  --primary-color: #FB7302;
+  --secondary-color: #FB7302;
+  --border-radius-base: 5vw;
+  --border-radius-max: 120px;
+  --container-aspect-ratio: 1.45;
+  --container-max-width: 2560px;
+}

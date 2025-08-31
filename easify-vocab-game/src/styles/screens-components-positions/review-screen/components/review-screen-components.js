@@ -1,0 +1,10 @@
+export { soundButtonPosition } from './buttons/sound-button-position.js';
+export { toogleButtonPosition } from './buttons/toogle-button-position.js';
+export { footerContainerPosition } from './footer/footer-container-position.js';
+export { footerQuantityPosition } from './footer/footer-quantity-position.js';
+export { footerTitlePosition } from './footer/footer-title-position.js';
+export { imageContainerPosition } from './image-container/image-container-position.js';
+export { nextButtonPosition } from './navigation-buttons/next-button-position.js';
+export { previousButtonPosition } from './navigation-buttons/previous-button-position.js';
+export { wordContainerPosition } from './word/word-container-position.js';
+export { wordTextPosition } from './word/word-text-position.js';

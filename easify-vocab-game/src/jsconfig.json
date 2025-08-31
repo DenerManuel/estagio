@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    // Qual versão de ECMAScript você almeja em runtime
+    "target": "ES6",
+    // Módulo CommonJS / ESNext / AMD / UMD / etc.
+    "module": "ESNext",
+    // Permite imports sem “../../” (ex: import Foo from 'components/Foo')
+    "baseUrl": "./src",
+    // Se quiser aliases (opcional)
+    /*
+    "paths": {
+      "@app/*": ["app/*"],
+      "@components/*": ["components/*"]
+    },
+    */
+    // Gera arquivos .js “editáveis” — só p/ editor, não altera build
+    "allowJs": true,
+    // Ativa verificação básica de types (JS doc e inferência)
+    "checkJs": false
+  },
+  // Quais arquivos incluir (mude conforme estrutura)
+  "include": ["src/**/*", "main.js"],
+  // Exclui pastas pesadas que não precisa indexar
+  "exclude": ["node_modules", "dist"]
+}
