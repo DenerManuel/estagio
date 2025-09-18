@@ -1,0 +1,9 @@
+#loading-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  font-size: 30px;
+  display: none;
+  z-index: 20;
+}

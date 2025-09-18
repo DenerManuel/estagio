@@ -1,0 +1,20 @@
+{
+  "name": "easify-monster-vocab",
+  "version": "1.0.0",
+  "description": "Um jogo de vocabulário construido com PIXI.JS e Vite",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "vite src",
+    "build": "vite build src",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "pixi.js": "^7.2.4"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  },
+  "keywords": [],
+  "author": "Dener Emanuel dos Santos",
+  "license": "ISC"
+}

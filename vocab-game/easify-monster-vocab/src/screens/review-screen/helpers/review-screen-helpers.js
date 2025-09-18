@@ -1,0 +1,5 @@
+export { updateFooter } from "./item-updater/update-footer.js"
+export { updateWord } from "./item-updater/update-word.js"
+export { updateDisplayedContent } from "./navigation-buttons/navigation-buttons-events.js"
+export { configureNavigationButtonEvents } from "./navigation-buttons/navigation-buttons-events.js"
+export { configureToogleButtonEvents } from "../helpers/toogle-button/toogle-button-events.js"
